@@ -84,10 +84,10 @@ class NightWriter
   end
 
   def hashes_into_rows
-    # until @hash[1].empty?
       into_rows
-    # end
   end
+
+  # def 
 
 
 

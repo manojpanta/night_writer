@@ -50,6 +50,19 @@ class NightWriterTest < Minitest::Test
     nightwriter.splitting_into_hash
     assert_equal 1, nightwriter.hash.count
   end
+  def test_if_top_middle_and_bottom_row_has_correct_brailles
+    nightwriter = NightWriter.new
+    nightwriter.get_braille_string("ab")
+    nightwriter.splitting_into_hash
+    nightwriter.hashes_into_rows
+    assert_equal "0.0.", nightwriter.top_row
+    assert_equal "..0.", nightwriter.middle_row
+    assert_equal "....", nightwriter.bottom_row
+
+
+
+
+  end
 
   def test_if_it_works_for_more_than_80_characters
     nightwriter = NightWriter.new
