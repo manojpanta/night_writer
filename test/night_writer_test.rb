@@ -45,6 +45,14 @@ class NightWriterTest < Minitest::Test
     # assert_equal ["0."], nightwriter.into_middle_row("a b")
 
   end
+  def test_letter_a
+    nightwriter = NightWriter.new
+    nightwriter.get_braille_string("ab")
+    nightwriter.into_top_row
+    nightwriter.into_middle_row
+    nightwriter.into_bottom_row
+    nightwriter.letter_a
+  end
 
 
 
