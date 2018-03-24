@@ -65,13 +65,16 @@ class NightWriter
     end
   end
 
-  def into_top_row
-    @top_row << braille[0..1]
-    braille.slice!(0..1)
-    @middle_row << braille[0..1]
-    braille.slice!(0..1)
-    @bottom_row << braille[0..1]
-    braille.slice!(0..1)
+  def into_rows
+    until @bottom_row.length == 80
+      @top_row << @hash[1][0..1]
+      # require 'pry'; binding.pry
+      @hash[1].slice!(0..1)
+      @middle_row << @hash[1][0..1]
+      @hash[1].slice!(0..1)
+      @bottom_row << @hash[1][0..1]
+      @hash[1].slice!(0..1)
+    end
   end
 
   def letter_a
@@ -79,6 +82,14 @@ class NightWriter
    p middle_row.join
    p bottom_row.join
   end
+
+  def hashes_into_rows
+    # until @hash[1].empty?
+      into_rows
+    # end
+  end
+
+
 
 
 
