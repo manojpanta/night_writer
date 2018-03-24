@@ -5,7 +5,6 @@ class NightWriter
 
 
   attr_reader :dictionary, :top_row, :middle_row, :bottom_row, :braille, :hash, :result
-
   def initialize
     @dictionary = {
                   "a" => "0.....",
@@ -48,7 +47,8 @@ class NightWriter
     @bottom_row = ""
     @braille = ""
     @hash = {}
-    @result = ""
+
+    @result = {}
   end
 
   def get_braille_string(letter)
@@ -68,26 +68,28 @@ class NightWriter
     end
   end
 
-  def into_rows
-    until @hash[1].empty?
-      @top_row << @hash[1][0..1]
-      @hash[1].slice!(0..1)
-      @middle_row << @hash[1][0..1]
-      @hash[1].slice!(0..1)
-      @bottom_row << @hash[1][0..1]
-      @hash[1].slice!(0..1)
+  def into_rows(count)
+    until @hash[count].empty?
+      @top_row << @hash[count][0..1]
+      @hash[count].slice!(0..1)
+      @middle_row << @hash[count][0..1]
+      @hash[count].slice!(0..1)
+      @bottom_row << @hash[count][0..1]
+      @hash[count].slice!(0..1)
     end
+    result
   end
 
   def print1
-   result << top_row << "\n"
-   result << middle_row << "\n"
-   result << bottom_row << "\n"
+    result[1] = top_row + "\n" + middle_row + "\n" + bottom_row + "\n"
 
- end
+  end
 
+  def create_result_hash
+    count = 1
+    result[count] = into_rows(count)
 
-
+  end
 
 
 

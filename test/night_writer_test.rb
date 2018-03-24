@@ -54,7 +54,7 @@ class NightWriterTest < Minitest::Test
     nightwriter = NightWriter.new
     nightwriter.get_braille_string("ab")
     nightwriter.splitting_into_hash
-    nightwriter.into_rows
+    nightwriter.into_rows(1)
     assert_equal "0.0.", nightwriter.top_row
     assert_equal "..0.", nightwriter.middle_row
     assert_equal "....", nightwriter.bottom_row
@@ -67,7 +67,7 @@ class NightWriterTest < Minitest::Test
     nightwriter.splitting_into_hash
     assert_equal 2 , nightwriter.hash.count
     assert_equal 12, nightwriter.hash[2].length
-    nightwriter.into_rows
+    nightwriter.into_rows(1)
     assert_equal 160, nightwriter.top_row.length
     assert_equal 160, nightwriter.middle_row.length
     assert_equal 160, nightwriter.bottom_row.length
@@ -78,10 +78,16 @@ class NightWriterTest < Minitest::Test
     input = "cbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     nightwriter.get_braille_string(input)
     nightwriter.splitting_into_hash
-    nightwriter.into_rows
+    nightwriter.into_rows(1)
     nightwriter.print1
   puts  nightwriter.result
+   nightwriter.create_result_hash
+   p nightwriter.result
+
+
   end
+
+
 
 
 
