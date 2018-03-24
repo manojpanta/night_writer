@@ -57,12 +57,20 @@ class NightWriter
   def into_top_row
     @top_row << braille[0..1]
     braille.slice!(0..1)
-
   end
 
   def into_middle_row
     @middle_row << braille[0..1]
+    braille.slice!(0..1)
   end
+
+  def into_bottom_row
+    @bottom_row << braille[0..1]
+
+
+  end
+
+  ".."
 
 
 

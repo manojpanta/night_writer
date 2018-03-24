@@ -34,10 +34,14 @@ class NightWriterTest < Minitest::Test
 
   def test_if_put_first_two_row_method_works
     nightwriter = NightWriter.new
-    nightwriter.get_braille_string("a b")
+    nightwriter.get_braille_string("a")
+    assert_equal "0.....", nightwriter.braille
     nightwriter.into_top_row
     assert_equal ["0."], nightwriter.top_row
-    assert_equal ["0."], nightwriter.middle_row
+    nightwriter.into_middle_row
+    assert_equal [".."], nightwriter.middle_row
+    nightwriter.into_bottom_row
+    assert_equal [".."], nightwriter.bottom_row
     # assert_equal ["0."], nightwriter.into_middle_row("a b")
 
   end
