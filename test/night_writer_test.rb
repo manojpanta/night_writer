@@ -59,7 +59,9 @@ class NightWriterTest < Minitest::Test
     assert_equal 2 , nightwriter.hash.count
     assert_equal 12, nightwriter.hash[2].length
     nightwriter.hashes_into_rows
-    p @top_row
+    assert_equal 160, nightwriter.top_row.length
+    assert_equal 160, nightwriter.middle_row.length
+    assert_equal 160, nightwriter.bottom_row.length
 
   end
 

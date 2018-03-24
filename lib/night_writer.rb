@@ -41,9 +41,9 @@ class NightWriter
                   "-" => "....00",
                   "cap" => ".....0"
                 }
-    @top_row = []
-    @middle_row = []
-    @bottom_row = []
+    @top_row = ''
+    @middle_row = ''
+    @bottom_row = ''
     @braille = ""
     @hash = {}
   end
@@ -59,16 +59,16 @@ class NightWriter
   def splitting_into_hash
     count = 1
     until braille.empty?
-      hash[count]= braille[0..479]
+      hash[count] = braille[0..479]
       braille.slice!(0..479)
       count += 1
     end
   end
 
   def into_rows
-    until @bottom_row.length == 80
-      @top_row << @hash[1][0..1]
+    until @hash[1].empty?
       # require 'pry'; binding.pry
+      @top_row << @hash[1][0..1]
       @hash[1].slice!(0..1)
       @middle_row << @hash[1][0..1]
       @hash[1].slice!(0..1)
