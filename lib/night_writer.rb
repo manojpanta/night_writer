@@ -1,8 +1,10 @@
 require 'pry'
+# require_relative "message.txt"
+
 class NightWriter
 
 
-  attr_reader :dictionary, :top_row, :middle_row, :bottom_row, :braille, :hash
+  attr_reader :dictionary, :top_row, :middle_row, :bottom_row, :braille, :hash, :result
 
   def initialize
     @dictionary = {
@@ -41,11 +43,12 @@ class NightWriter
                   "-" => "....00",
                   "cap" => ".....0"
                 }
-    @top_row = ''
-    @middle_row = ''
-    @bottom_row = ''
+    @top_row = ""
+    @middle_row = ""
+    @bottom_row = ""
     @braille = ""
     @hash = {}
+    @result = ""
   end
 
   def get_braille_string(letter)
@@ -67,7 +70,6 @@ class NightWriter
 
   def into_rows
     until @hash[1].empty?
-      # require 'pry'; binding.pry
       @top_row << @hash[1][0..1]
       @hash[1].slice!(0..1)
       @middle_row << @hash[1][0..1]
@@ -77,28 +79,12 @@ class NightWriter
     end
   end
 
-  def letter_a
-   p  top_row.join
-   p middle_row.join
-   p bottom_row.join
-  end
+  def print1
+   result << top_row << "\n"
+   result << middle_row << "\n"
+   result << bottom_row << "\n"
 
-  def hashes_into_rows
-      into_rows
-  end
-
-  # def 
-
-
-
-
-
-
-
-
-
-
-
+ end
 
 
 
