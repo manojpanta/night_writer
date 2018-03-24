@@ -1,6 +1,10 @@
+require 'pry'
 class NightWriter
-  def initialize
 
+
+  attr_reader :dictionary, :top_row, :middle_row, :bottom_row, :braille
+
+  def initialize
     @dictionary = {
                   "a" => "0.....",
                   "b" => "0.0...",
@@ -37,9 +41,33 @@ class NightWriter
                   "-" => "....00",
                   "cap" => ".....0"
                 }
+    @top_row = []
+    @middle_row = []
+    @bottom_row = []
+    @braille = ""
+  end
 
+  def get_braille_string(letter)
+    letter = letter.chars
+    letter.map do |letter|
+      @braille << dictionary[letter]
+    end
+  end
+
+  def into_top_row
+    @top_row << braille[0..1]
+    braille.slice!(0..1)
 
   end
+
+  def into_middle_row
+    @middle_row << braille[0..1]
+  end
+
+
+
+
+
 
 
 
