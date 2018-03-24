@@ -34,16 +34,6 @@ class NightWriterTest < Minitest::Test
 
   def test_if_put_first_two_row_method_works
     skip
-    nightwriter = NightWriter.new
-    nightwriter.get_braille_string("a")
-    assert_equal "0.....", nightwriter.braille
-    nightwriter.into_top_row
-    assert_equal ["0."], nightwriter.top_row
-    nightwriter.into_middle_row
-    assert_equal [".."], nightwriter.middle_row
-    nightwriter.into_bottom_row
-    assert_equal [".."], nightwriter.bottom_row
-    # assert_equal ["0."], nightwriter.into_middle_row("a b")
 
   end
 
@@ -60,13 +50,32 @@ class NightWriterTest < Minitest::Test
     nightwriter.splitting_into_hash
     assert_equal 1, nightwriter.hash.count
   end
+  def test_if_top_middle_and_bottom_row_has_correct_brailles
+    nightwriter = NightWriter.new
+    nightwriter.get_braille_string("ab")
+    nightwriter.splitting_into_hash
+    nightwriter.hashes_into_rows
+    assert_equal "0.0.", nightwriter.top_row
+    assert_equal "..0.", nightwriter.middle_row
+    assert_equal "....", nightwriter.bottom_row
+
+
+
+
+  end
 
   def test_if_it_works_for_more_than_80_characters
     nightwriter = NightWriter.new
-    input = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    input = "abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     nightwriter.get_braille_string(input)
     nightwriter.splitting_into_hash
     assert_equal 2 , nightwriter.hash.count
+    assert_equal 12, nightwriter.hash[2].length
+    nightwriter.hashes_into_rows
+    assert_equal 160, nightwriter.top_row.length
+    assert_equal 160, nightwriter.middle_row.length
+    assert_equal 160, nightwriter.bottom_row.length
+
   end
 
 
