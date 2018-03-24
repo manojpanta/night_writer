@@ -2,7 +2,7 @@ require 'pry'
 class NightWriter
 
 
-  attr_reader :dictionary, :top_row, :middle_row, :bottom_row, :braille
+  attr_reader :dictionary, :top_row, :middle_row, :bottom_row, :braille, :hash
 
   def initialize
     @dictionary = {
@@ -45,6 +45,7 @@ class NightWriter
     @middle_row = []
     @bottom_row = []
     @braille = ""
+    @hash = {}
   end
 
   def get_braille_string(letter)
@@ -52,20 +53,25 @@ class NightWriter
     letter.map do |letter|
       @braille << dictionary[letter]
     end
+    @braille
+  end
+
+  def splitting_into_hash
+    count = 1
+    until braille.empty?
+      hash[count]= braille[0..479]
+      braille.slice!(0..479)
+      count += 1
+    end
   end
 
   def into_top_row
     @top_row << braille[0..1]
     braille.slice!(0..1)
-  end
-
-  def into_middle_row
     @middle_row << braille[0..1]
     braille.slice!(0..1)
-  end
-
-  def into_bottom_row
     @bottom_row << braille[0..1]
+    braille.slice!(0..1)
   end
 
   def letter_a
@@ -74,7 +80,9 @@ class NightWriter
    p bottom_row.join
   end
 
-  ".."
+
+
+
 
 
 

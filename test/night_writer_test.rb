@@ -12,7 +12,7 @@ class NightWriterTest < Minitest::Test
   end
 
   def test_it_can_translate_one_letter
-    skip
+
     nightwriter = NightWriter.new
 
     assert_equal "0.....", nightwriter.get_braille_string("a")
@@ -33,6 +33,7 @@ class NightWriterTest < Minitest::Test
   end
 
   def test_if_put_first_two_row_method_works
+    skip
     nightwriter = NightWriter.new
     nightwriter.get_braille_string("a")
     assert_equal "0.....", nightwriter.braille
@@ -45,14 +46,30 @@ class NightWriterTest < Minitest::Test
     # assert_equal ["0."], nightwriter.into_middle_row("a b")
 
   end
+
   def test_letter_a
     nightwriter = NightWriter.new
     nightwriter.get_braille_string("ab")
-    nightwriter.into_top_row
-    nightwriter.into_middle_row
-    nightwriter.into_bottom_row
-    nightwriter.letter_a
+    nightwriter.splitting_into_hash
+    assert_equal 1, nightwriter.hash.count
   end
+
+  def test_if_it_works_for_multiple_letters
+    nightwriter = NightWriter.new
+    nightwriter.get_braille_string("abc")
+    nightwriter.splitting_into_hash
+    assert_equal 1, nightwriter.hash.count
+  end
+
+  def test_if_it_works_for_more_than_80_characters
+    nightwriter = NightWriter.new
+    input = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    nightwriter.get_braille_string(input)
+    nightwriter.splitting_into_hash
+    assert_equal 2 , nightwriter.hash.count
+  end
+
+
 
 
 
