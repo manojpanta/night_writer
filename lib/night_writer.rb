@@ -66,8 +66,12 @@ class NightWriter
 
   def into_bottom_row
     @bottom_row << braille[0..1]
+  end
 
-
+  def letter_a
+   p  top_row.join
+   p middle_row.join
+   p bottom_row.join
   end
 
   ".."
