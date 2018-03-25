@@ -159,5 +159,9 @@ class NightWriterTest < Minitest::Test
     expected = '.....000..0.00.000...........000.00.0.....00..0.'
 
     assert_equal expected, actual
+
   end
+
+
+
 end
