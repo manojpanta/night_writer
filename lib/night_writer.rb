@@ -1,10 +1,10 @@
 require 'pry'
-# require_relative "message.txt"
 
 class NightWriter
-
-
-  attr_reader :dictionary, :top_row, :middle_row, :bottom_row, :braille, :hash, :result
+  attr_reader :dictionary,
+              :braille_splitted_in_lines,
+              :brailles_in_hash,
+              :brailles
   def initialize
     @dictionary = {
                   "a" => "0.....",
@@ -42,55 +42,51 @@ class NightWriter
                   "-" => "....00",
                   "cap" => ".....0"
                 }
-    @top_row = ""
-    @middle_row = ""
-    @bottom_row = ""
-    @braille = ""
-    @hash = {}
-
-    @result = {}
+    @brailles = ''
+    @brailles_in_hash = {}
+    @braille_splitted_in_lines = []
+    @letters = ('a'..'z').to_a
   end
 
   def get_braille_string(letter)
     letter = letter.chars
     letter.map do |letter|
-      @braille << dictionary[letter]
+      if letter.upcase == letter && @letters.include?(letter.downcase)
+        @brailles << dictionary['cap']
+        @brailles << dictionary[letter.downcase]
+      else
+        @brailles << dictionary[letter]
+      end
     end
-    @braille
+    @brailles
   end
 
-  def splitting_into_hash
+  def splitting_into_brailles_in_hash
     count = 1
-    until braille.empty?
-      hash[count] = braille[0..479]
-      braille.slice!(0..479)
+    until brailles.empty?
+      brailles_in_hash[count] = brailles[0..479]
+      brailles.slice!(0..479)
       count += 1
     end
   end
 
-  def into_rows(count)
-    until @hash[count].empty?
-      @top_row << @hash[count][0..1]
-      @hash[count].slice!(0..1)
-      @middle_row << @hash[count][0..1]
-      @hash[count].slice!(0..1)
-      @bottom_row << @hash[count][0..1]
-      @hash[count].slice!(0..1)
+  def into_rows(count = 1)
+    top_row = ''
+    middle_row = ''
+    bottom_row = ''
+    return nil if count > @brailles_in_hash.length
+    until @brailles_in_hash[count].empty?
+      top_row << @brailles_in_hash[count][0..1]
+      @brailles_in_hash[count].slice!(0..1)
+      middle_row << @brailles_in_hash[count][0..1]
+      @brailles_in_hash[count].slice!(0..1)
+      bottom_row << @brailles_in_hash[count][0..1]
+      @brailles_in_hash[count].slice!(0..1)
     end
-    result
+    rows = top_row + "\n" + middle_row + "\n" + bottom_row + "\n"
+    @braille_splitted_in_lines << rows
+    count += 1
+    into_rows(count)
   end
-
-  def print1
-    result[1] = top_row + "\n" + middle_row + "\n" + bottom_row + "\n"
-
-  end
-
-  def create_result_hash
-    count = 1
-    result[count] = into_rows(count)
-
-  end
-
-
-
+  puts @braille_splitted_in_lines
 end
