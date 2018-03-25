@@ -93,7 +93,8 @@ class NightWriterTest < Minitest::Test
 
   def test_it_creates_a_new_hash_for_input_longer_than_80_characters
     nightwriter = NightWriter.new
-    input = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    input = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n
+    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     nightwriter.get_braille_string(input)
 
     nightwriter.splitting_into_brailles_in_hash

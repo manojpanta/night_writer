@@ -1,0 +1,17 @@
+class NightRead
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+end

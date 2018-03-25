@@ -1,16 +1,1 @@
-The
-
-
-
-
-
-
-
-
-
-
-
-purpose of using plain text today is primarily independence from programs th
-at require their very own special encoding or formatting or file format. Pl
-ain text files can be opened, read, and edited with countless text edi
-tors and utilities.
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaA
