@@ -88,5 +88,12 @@ class NightWriter
     count += 1
     into_rows(count)
   end
-  # @braille_splitted_in_lines
 end
+
+nw = NightWriter.new
+nw.get_braille_string('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+nw.splitting_into_brailles_in_hash
+nw.into_rows
+f = File.new("./braille.txt", "w")
+f.puts (nw.braille_splitted_in_lines)
+f.close
