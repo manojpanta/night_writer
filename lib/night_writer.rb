@@ -45,7 +45,7 @@ class NightWriter
     @brailles = ''
     @brailles_in_hash = {}
     @braille_splitted_in_lines = []
-    @letters = ('A'..'Z').to_a
+    @letters = ('A'..'Z')
   end
 
   def get_braille_string(letters)
