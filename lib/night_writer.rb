@@ -88,5 +88,5 @@ class NightWriter
     count += 1
     into_rows(count)
   end
-  puts @braille_splitted_in_lines
+  @braille_splitted_in_lines
 end
