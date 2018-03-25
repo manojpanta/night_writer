@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/night_writer'
+require './lib/night_write'
 
 class NightWriterTest < Minitest::Test
 
@@ -154,12 +154,11 @@ class NightWriterTest < Minitest::Test
 
   def test_for_a_word_mixed_with_upcase_and_lowercase_letters_with_space
     nightwriter = NightWriter.new
-
-    actual = nightwriter.get_braille_string('My Nam')
-    expected = '.....000..0.00.000...........000.00.0.....00..0.'
-
-    assert_equal expected, actual
-
+    actual = nightwriter.get_braille_string('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    nightwriter.splitting_into_brailles_in_hash
+    assert_equal 2, nightwriter.brailles_in_hash.length
+    nightwriter.into_rows
+    puts nightwriter.braille_splitted_in_lines
   end
 
 

@@ -1,4 +1,4 @@
-require "./lib/night_writer"
+require "./lib/night_write"
 
 class FileReader
   def read
@@ -15,8 +15,7 @@ class NightWriter
   end
 
   def encode_file_to_braille
-    # I wouldn't worry about testing this method
-    # unless you get everything else done
+    
     plain = reader.read
     braille = encode_to_braille(plain)
   end
