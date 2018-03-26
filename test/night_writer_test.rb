@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/night_write'
+require './lib/night_writer'
 
 class NightWriterTest < Minitest::Test
 
@@ -93,7 +93,8 @@ class NightWriterTest < Minitest::Test
 
   def test_it_creates_a_new_hash_for_input_longer_than_80_characters
     nightwriter = NightWriter.new
-    input = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    input = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     nightwriter.get_braille_string(input)
 
     nightwriter.splitting_into_brailles_in_hash
@@ -104,8 +105,8 @@ class NightWriterTest < Minitest::Test
 
   def test_if_it_works_for_more_than_80_characters
     nightwriter = NightWriter.new
-    input = 'abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-
+    input = "abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n
+aaaaaaaaaaaaaaaaa"
     nightwriter.get_braille_string(input)
     nightwriter.splitting_into_brailles_in_hash
 
@@ -123,7 +124,8 @@ class NightWriterTest < Minitest::Test
 
   def test_into_row_method_changes_braille_splitted_in_lines_variable
     nightwriter = NightWriter.new
-    input = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    input = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
     nightwriter.get_braille_string(input)
     nightwriter.splitting_into_brailles_in_hash
@@ -140,7 +142,9 @@ class NightWriterTest < Minitest::Test
   def test_get_braille_string_method_works_for_two_capital_letters
     nightwriter = NightWriter.new
 
-    assert_equal '.....00..........00.0...', nightwriter.get_braille_string('AB')
+    result = '.....00..........00.0...'
+
+    assert_equal result, nightwriter.get_braille_string('AB')
   end
 
   def test_if_get_braille_string_method_for_two_capital_letters_with_space
@@ -154,11 +158,12 @@ class NightWriterTest < Minitest::Test
 
   def test_for_a_word_mixed_with_upcase_and_lowercase_letters_with_space
     nightwriter = NightWriter.new
-    actual = nightwriter.get_braille_string('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    actual = nightwriter.get_braille_string("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     nightwriter.splitting_into_brailles_in_hash
     assert_equal 2, nightwriter.brailles_in_hash.length
     nightwriter.into_rows
-    puts nightwriter.braille_splitted_in_lines
+    nightwriter.braille_splitted_in_lines
   end
 
 
