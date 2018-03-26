@@ -2,6 +2,7 @@ require './lib/night_writer'
 ARGV[0]
 f = File.open('./lib/message.txt', 'r')
 input = f.read.delete("\n")
+require 'pry'; binding.pry
 f.close
 
 f.close
