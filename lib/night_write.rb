@@ -95,11 +95,10 @@ end
 ARGV[0]
 f = File.open('./lib/message.txt', 'r')
 input = f.read.delete("\n")
-binding.pry
+
 
 
 f.close
-
 nw = NightWriter.new
 nw.get_braille_string(input)
 nw.splitting_into_brailles_in_hash
