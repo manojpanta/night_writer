@@ -93,8 +93,11 @@ class NightWriterTest < Minitest::Test
 
   def test_it_creates_a_new_hash_for_input_longer_than_80_characters
     nightwriter = NightWriter.new
-    input = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+
+    input1 = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    input2 = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    input = input1.concat(input2)
+
     nightwriter.get_braille_string(input)
 
     nightwriter.splitting_into_brailles_in_hash
@@ -105,8 +108,11 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
   def test_if_it_works_for_more_than_80_characters
     nightwriter = NightWriter.new
-    input = "abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n
-aaaaaaaaaaaaaaaaa"
+
+    input1 = 'abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    input2 = 'aaaaaaaaaaaaaaaaa'
+
+    input = input1.concat(input2)
     nightwriter.get_braille_string(input)
     nightwriter.splitting_into_brailles_in_hash
 
@@ -124,8 +130,10 @@ aaaaaaaaaaaaaaaaa"
 
   def test_into_row_method_changes_braille_splitted_in_lines_variable
     nightwriter = NightWriter.new
-    input = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+
+    input1 = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    input2 = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    input = input1.concat(input2)
 
     nightwriter.get_braille_string(input)
     nightwriter.splitting_into_brailles_in_hash
@@ -158,14 +166,16 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
   def test_for_a_word_mixed_with_upcase_and_lowercase_letters_with_space
     nightwriter = NightWriter.new
-    actual = nightwriter.get_braille_string("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+
+    input1 = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    input2 = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    input = input1.concat(input2)
+
+    nightwriter.get_braille_string(input)
     nightwriter.splitting_into_brailles_in_hash
-    assert_equal 2, nightwriter.brailles_in_hash.length
     nightwriter.into_rows
+
+    assert_equal 2, nightwriter.brailles_in_hash.length
     nightwriter.braille_splitted_in_lines
   end
-
-
-
 end
