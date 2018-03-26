@@ -1,7 +1,14 @@
+require 'pry'
 class NightReader
+  attr_reader :dictionary,
+              :brailles,
+              :hash,
+              :array
 
 
-  def intialize
+
+
+  def initialize
     @dictionary = {
                   "0....."=>"a",
                   "0.0..."=>"b",
@@ -38,13 +45,33 @@ class NightReader
                   "....00"=>"-",
                   ".....0"=>"cap"
                   }
+                  @hash = {}
+                  @brailles = brailles
+    @array = []
+
   end
 
   def braille_to_english(brailles)
-    letters = letters.delete("\n")
-    
-
-      end
-    end
-    @brailles
+    @brailles = brailles.delete("\n")
   end
+
+
+  def brailles_in_hash
+    count = 1
+    until brailles.empty?
+      hash[1] = brailles[0..479]
+      brailles.slice!(0..479)
+      count += 1
+    end
+  end
+
+  def break_into_arrays
+    @array << hash[1]
+
+
+
+
+
+
+
+end
