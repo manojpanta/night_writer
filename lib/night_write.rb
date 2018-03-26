@@ -4,6 +4,7 @@ f = File.open('./lib/message.txt', 'r')
 input = f.read.delete('\n')
 f.close
 
+f.close
 nw = NightWriter.new
 nw.get_braille_string(input)
 nw.splitting_into_brailles_in_hash
