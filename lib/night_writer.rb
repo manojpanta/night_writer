@@ -1,5 +1,4 @@
 require 'pry'
-
 class NightWriter
   attr_reader :dictionary,
               :braille_splitted_in_lines,
@@ -63,9 +62,9 @@ class NightWriter
 
   def splitting_into_brailles_in_hash
     count = 1
-    until brailles.empty?
-      brailles_in_hash[count] = brailles[0..479]
-      brailles.slice!(0..479)
+    until @brailles.empty?
+      @brailles_in_hash[count] = brailles[0..479]
+      @brailles.slice!(0..479)
       count += 1
     end
   end
