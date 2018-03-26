@@ -4,6 +4,12 @@ class NightReader
               :brailles,
               :hash,
               :array
+              :string, 
+              :string1,
+              :string2,
+              :array,
+              :array1,
+              :array2
 
 
 
@@ -47,7 +53,12 @@ class NightReader
                   }
                   @hash = {}
                   @brailles = brailles
-    @array = []
+                  @string = ""
+                  @string1 = ""
+                  @string2 = ""
+                  @array = []
+                  @array1 = []
+                  @array2 = []
 
   end
 
@@ -57,16 +68,19 @@ class NightReader
 
 
   def brailles_in_hash
-    count = 1
     until brailles.empty?
-      hash[1] = brailles[0..479]
-      brailles.slice!(0..479)
-      count += 1
+      @string << brailles[0..159]
+      brailles.slice!(0..159)
+      @string1 << brailles[0..159]
+      brailles.slice!(0..159)
+      @string2 << brailles[0..159]
+      brailles.slice!(0..159)
     end
   end
 
-  def break_into_arrays
-    @array << hash[1]
+  def line_one
+    until @string.empty?
+
 
 
 
