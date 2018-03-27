@@ -20,4 +20,5 @@ class NightReaderTest < Minitest::Test
 
 
 
+
 end
