@@ -1,15 +1,10 @@
-require 'pry'
 class NightReader
   attr_reader :dictionary,
               :brailles,
               :hash,
-              :array
-              :string, 
-              :string1,
-              :string2,
-              :array,
-              :array1,
-              :array2
+              :sentence,
+              :sentence1
+
 
 
 
@@ -51,41 +46,48 @@ class NightReader
                   "....00"=>"-",
                   ".....0"=>"cap"
                   }
-                  @hash = {}
-                  @brailles = brailles
-                  @string = ""
-                  @string1 = ""
-                  @string2 = ""
-                  @array = []
-                  @array1 = []
-                  @array2 = []
-
+    @hash = {}
+    @brailles = []
+    @sentence = ''
+    @sentence1 = ''
   end
 
-  def braille_to_english(brailles)
-    @brailles = brailles.delete("\n")
-  end
-
-
-  def brailles_in_hash
-    until brailles.empty?
-      @string << brailles[0..159]
-      brailles.slice!(0..159)
-      @string1 << brailles[0..159]
-      brailles.slice!(0..159)
-      @string2 << brailles[0..159]
-      brailles.slice!(0..159)
+  def braille_to_english(brailles_array)
+    brailles_array.each do |string|
+      @brailles << string
     end
   end
 
-  def line_one
-    until @string.empty?
+  def test
+    count = 1
+    until @brailles.empty?
+      @hash[count] = @brailles.shift(3)
+      count += 1
+    end
+  end
 
+  def put_into_hash(count = 1)
+    return @sentence if count > @hash.count
+    until @hash[count][2].empty?
+      @sentence << @hash[count][0][0..1] << @hash[count][1][0..1] << @hash[count][2][0..1]
+      @hash[count][0].slice!(0..1)
+      @hash[count][1].slice!(0..1)
+      @hash[count][2].slice!(0..1)
+    end
+    count += 1
+    put_into_hash(count)
+  end
 
-
-
-
-
-
-
+  def translate
+    until @sentence.empty?
+      if @sentence[0..5] == ".....0"
+        @sentence.slice!(0..5)
+        @sentence1 << dictionary[@sentence[0..5]].upcase
+        @sentence.slice!(0..5)
+      else
+        @sentence1 << dictionary[@sentence[0..5]]
+        @sentence.slice!(0..5)
+      end
+    end
+  end
 end
