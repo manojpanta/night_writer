@@ -1,1 +1,1 @@
-maile pani hoina mero akha harule timilai nai khojirajexa
+Braille uses a two-by-three grid of dots to represent characters. Well simulate that concept by using three lines of symbols

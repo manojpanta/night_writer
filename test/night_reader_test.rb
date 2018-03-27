@@ -15,7 +15,6 @@ class NightReaderTest < Minitest::Test
     assert_equal "a", nightreader.dictionary["0....."]
   end
 
-  def test_
 
 
 

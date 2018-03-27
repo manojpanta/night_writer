@@ -48,7 +48,7 @@ class NightWriter
   def get_braille_string(letters)
     letters = letters.delete("\n").chars
     letters.map do |letter|
-      if letter.upcase == letter && @letters.include?(letter)
+      if letter.upcase == letter && alphabets?(letter)
         @brailles << dictionary['cap']
         @brailles << dictionary[letter.downcase]
       else
@@ -56,6 +56,10 @@ class NightWriter
       end
     end
     @brailles
+  end
+
+  def alphabets?(letter)
+    @letters.include?(letter)
   end
 
   def splitting_into_brailles_in_hash
@@ -69,6 +73,7 @@ class NightWriter
 
   def into_rows(count = 1, top_row = '', middle_row = '', bottom_row = '')
     return @braille_splitted_in_lines if count > @brailles_in_hash.length
+
     until @brailles_in_hash[count].empty?
       top_row << @brailles_in_hash[count][0..1]
       @brailles_in_hash[count].slice!(0..1)
