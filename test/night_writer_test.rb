@@ -1,9 +1,7 @@
-require 'minitest/autorun'
-require 'minitest/pride'
+require_relative 'test_helper'
 require './lib/night_writer'
 
 class NightWriterTest < Minitest::Test
-
   def test_if_it_exists
     nightwriter = NightWriter.new
 
@@ -102,9 +100,8 @@ class NightWriterTest < Minitest::Test
 
     nightwriter.splitting_into_brailles_in_hash
 
-    assert_equal 2, nightwriter.brailles_in_hash.count
+    assert_equal 3, nightwriter.brailles_in_hash.count
   end
-
 
   def test_if_it_works_for_more_than_80_characters
     nightwriter = NightWriter.new
@@ -116,16 +113,16 @@ class NightWriterTest < Minitest::Test
     nightwriter.get_braille_string(input)
     nightwriter.splitting_into_brailles_in_hash
 
-    assert_equal 2, nightwriter.brailles_in_hash.count
-    assert_equal 12, nightwriter.brailles_in_hash[2].length
-    assert_equal 480, nightwriter.brailles_in_hash[1].length
+    assert_equal 3, nightwriter.brailles_in_hash.count
+    assert_equal 240, nightwriter.brailles_in_hash[2].length
+    assert_equal 240, nightwriter.brailles_in_hash[1].length
 
     nightwriter.into_rows
 
-    assert_equal 483, nightwriter.braille_splitted_in_lines[0].length
-    assert_equal 15, nightwriter.braille_splitted_in_lines[1].length
+    assert_equal 243, nightwriter.braille_splitted_in_lines[0].length
+    assert_equal 243, nightwriter.braille_splitted_in_lines[1].length
 
-    assert_nil nightwriter.braille_splitted_in_lines[2]
+    assert "0.0.\n....\n....\n", nightwriter.braille_splitted_in_lines[2]
   end
 
   def test_into_row_method_changes_braille_splitted_in_lines_variable
@@ -139,7 +136,7 @@ class NightWriterTest < Minitest::Test
     nightwriter.splitting_into_brailles_in_hash
     nightwriter.into_rows
 
-    assert_equal 2, nightwriter.braille_splitted_in_lines.length
+    assert_equal 3, nightwriter.braille_splitted_in_lines.length
   end
 
   def test_get_braille_string_method_for_capital_letter
@@ -175,7 +172,7 @@ class NightWriterTest < Minitest::Test
     nightwriter.splitting_into_brailles_in_hash
     nightwriter.into_rows
 
-    assert_equal 2, nightwriter.brailles_in_hash.length
+    assert_equal 3, nightwriter.brailles_in_hash.length
     nightwriter.braille_splitted_in_lines
   end
 end
