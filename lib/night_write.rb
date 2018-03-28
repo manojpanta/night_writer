@@ -5,7 +5,6 @@ input = f.read
 f.close
 
 nw = NightWriter.new
-# nw.get_input(input)
 nw.get_braille_string(input)
 nw.splitting_into_brailles_in_hash
 nw.into_rows
