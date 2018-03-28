@@ -9,6 +9,7 @@ nw.get_braille_string(input)
 nw.splitting_into_brailles_in_hash
 nw.into_rows
 f = File.new('./lib/braille.txt', 'w')
+puts "Created 'braille.txt' containing #{nw.braille_splitted_in_lines[0].delete("\n").length} characters"
 f.puts(nw.braille_splitted_in_lines)
 f.close
 
