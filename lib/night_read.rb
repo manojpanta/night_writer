@@ -1,7 +1,9 @@
 require './lib/night_reader'
+require 'pry'
 ARGV[0]
 f = File.open('./lib/braille.txt', 'r')
 input = f.read.split("\n")
+# binding.pry
 f.close
 
 nightreader = NightReader.new(input)
