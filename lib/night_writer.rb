@@ -39,7 +39,7 @@ class NightWriter
                     "'" => '....0.',
                     '-' => '....00',
                     'cap' => '.....0',
-                    "\n" => '------' }
+                    "\n" => '000000' }
     @brailles = ''
     @brailles_in_hash = {}
     @braille_splitted_in_lines = []

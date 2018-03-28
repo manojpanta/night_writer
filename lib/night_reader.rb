@@ -39,7 +39,7 @@ class NightReader
                      '....0.' => "'",
                      '....00' => '-',
                      '.....0' => 'cap',
-                     '------' => "\n" }
+                     '000000' => "\n" }
     @brailles_in_hash = {}
     @brailles_array  = input
     @braille_string  = ''

@@ -1,7 +1,7 @@
 require './lib/night_writer'
 ARGV[0]
 f = File.open('./lib/message.txt', 'r')
-input = f.read.delete("\n")
+input = f.read
 f.close
 
 nw = NightWriter.new
