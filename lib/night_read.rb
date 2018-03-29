@@ -11,7 +11,9 @@ nightreader.create_braille_string
 nightreader.create_output_string
 
 f = File.new('./lib/original_message.txt', 'w')
+puts "Created 'original_message.txt' containing "\
+      "#{nightreader.output_string.delete("\n").length} characters"
 f.puts(nightreader.output_string)
 f.close
 
-# ruby lib/night_write.rb  braille.txt  original_message.txt
+# ruby lib/night_read.rb  braille.txt  original_message.txt

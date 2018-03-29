@@ -76,12 +76,9 @@ class NightWriter
     return @braille_splitted_in_lines if count > @brailles_in_hash.length
 
     until @brailles_in_hash[count].empty?
-      top_row << @brailles_in_hash[count][0..1]
-      @brailles_in_hash[count].slice!(0..1)
-      middle_row << @brailles_in_hash[count][0..1]
-      @brailles_in_hash[count].slice!(0..1)
-      bottom_row << @brailles_in_hash[count][0..1]
-      @brailles_in_hash[count].slice!(0..1)
+      top_row << @brailles_in_hash[count].slice!(0..1)
+      middle_row << @brailles_in_hash[count].slice!(0..1)
+      bottom_row << @brailles_in_hash[count].slice!(0..1)
     end
     rows = top_row + "\n" + middle_row + "\n" + bottom_row + "\n"
     @braille_splitted_in_lines << rows
